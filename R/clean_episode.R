@@ -54,8 +54,3 @@ clean_the_episode <- function(ep) {
   list(season=season,episode=episode,tot_episode=tot_episode,script=ep)
 }
 
-
-#Find all the capital words with : after, which is the beginning of
-# a someones qoute
-#str_extract_all(ep,"[A-Z][A-Z ,&-]+:")
-
