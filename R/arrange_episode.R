@@ -4,7 +4,7 @@
 #' Every row in the dataframe is a different person speaking.
 #' @param ep a list. The list returned from \code{\link{clean_the_episode}} of a single episode.
 #' @importFrom stringr str_locate_all str_trim
-#' @return a dataframe containing arranged episode script
+#' @return a dataframe containing arranged episode scripts
 arrange_episode <- function(ep) {
   x <- ep$script
   #Find all the capital words with : after, which is the beginning of a someones qoute
