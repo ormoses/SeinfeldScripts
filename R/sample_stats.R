@@ -2,6 +2,8 @@
 #'
 #' A function that counts who speaks the most number of times
 #' @param all_scripts a dataframe with all the scripts data arranged
+#' @param the_season a number indicates the season. for all season can omit or "all"
+#' @param the_episode a number indicates the episode. for all season can omit or "all"
 #' @importFrom plyr count
 #' @importFrom dplyr arrange filter
 #' @return a frequency table

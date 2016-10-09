@@ -4,10 +4,14 @@
 \alias{count_num_words}
 \title{Count who speakes most by number of words}
 \usage{
-count_num_words(all_scripts)
+count_num_words(all_scripts, the_season = "all", the_episode = "all")
 }
 \arguments{
 \item{all_scripts}{a dataframe with all the scripts data arranged}
+
+\item{the_season}{a number indicates the season. for all season can omit or "all"}
+
+\item{the_episode}{a number indicates the episode. for all season can omit or "all"}
 }
 \value{
 a frequency table
