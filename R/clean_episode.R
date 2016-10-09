@@ -5,11 +5,14 @@
 #' @import stringr
 #' @return a string that is a cleaned script
 clean_the_episode <- function(ep) {
-
+  if (is.null(ep)) return(NULL)
 
   #Change the monologues to MONOLOGUE:
   ep <- gsub("\\[Opening Monologue\\]","MONOLOUGUE:",ep)
   ep <- gsub("\\(?Jerry is on stage, performing.\\)?]","MONOLOUGUE:",ep)
+
+  #Delete all that inside () and inside [] and <>.
+  ep <- str_replace_all(ep,"\\(.*?\\)|\\[.*?\\]|\\<.*?\\>","")
 
   #Get rid of locations
   ep <- str_replace_all(ep,"INT.+","")
@@ -21,7 +24,7 @@ clean_the_episode <- function(ep) {
 
 
   #Take out everything after "The End"
-  end <- str_locate_all(ep,"Copyright 2006 seinology.com")
+  end <- str_locate_all(ep,"Copyright 2006 seinology.com|The End")
   end <- end[[1]]
   end <- end[nrow(end),]
   ep <- substr(ep,1,end[1]-1)
@@ -29,24 +32,22 @@ clean_the_episode <- function(ep) {
   #Extract the season #, episode #, episode name
 
   #Extract the episode total number
-  ep_loc <- str_locate(ep,"Episode [0-9&]+")
+  ep_loc <- str_locate(ep,"Episodes? [0-9&]+")
   episode <- substr(ep,ep_loc[1],ep_loc[2])
   tot_episode <- str_extract(episode,"[0-9&]+")
   #Extract the season and the episode in the season
-  season_loc <- str_locate(ep,"season [0-9], episode [0-9&]+")
+  season_loc <- str_locate(ep,"season [0-9], episodes? [0-9&]+")
   season_ep <- substr(ep,season_loc[1],season_loc[2])
   season_ep <- str_extract_all(season_ep,"[0-9&]+")[[1]]
   season <- season_ep[1]
   episode <- season_ep[2]
 
-  #Take out everything before "========================"
-  start <- str_locate_all(ep,"===")
+  #Take out everything before the first "========================"
+  start <- str_locate_all(ep,"==============")
   start <- start[[1]]
-  start <- start[nrow(start),]
+  start <- start[1,]
   ep <- substr(ep,start[2]+1,str_length(ep))
 
-  #Delete all that inside () and inside [] and <>.
-  ep <- str_replace_all(ep,"\\(.*?\\)|\\[.*?\\]|\\<.*?\\>","")
   #Merge multiple space into one
   ep <- gsub("\\s+"," ",ep)
   #Delete extra spaces in the beginning and end
