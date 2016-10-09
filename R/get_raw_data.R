@@ -26,7 +26,7 @@ get_raw_data <- function(nums) {
     save(raw_data,file=paste0(getwd(),"/data-raw/",i,".Rda"))
   }
   #Getting double episodes
-  for (i in c(82,100,177,179)) {
+  for (i in c(82,179)) {
     raw_data <- get_raw_episode(paste0(i,"and",i+1))
     raw_data_list[[i]] <- raw_data
     save(raw_data,file=paste0(getwd(),"/data-raw/",i,".Rda"))
