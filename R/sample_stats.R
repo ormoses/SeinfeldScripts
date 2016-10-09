@@ -3,20 +3,41 @@
 #' A function that counts who speaks the most number of times
 #' @param all_scripts a dataframe with all the scripts data arranged
 #' @importFrom plyr count
-#' @importFrom dplyr arrange
+#' @importFrom dplyr arrange filter
 #' @return a frequency table
-count_the_speakers <- function(all_scripts) {
+count_the_speakers <- function(all_scripts,the_season="all",the_episode="all") {
+  #filter by season
+  if (the_season!="all") {
+    all_scripts <- dplyr::filter(all_scripts,season==the_season)
+  }
+
+  #filter by episode
+  if (the_episode!="all") {
+    all_scripts <- dplyr::filter(all_scripts,episode==the_episode)
+  }
+
   counts <- count(all_scripts,'speaker')
   freq <- arrange(counts,desc(freq))
   freq
 }
+
 #' Count who speakes most by number of words
 #'
 #' A function that counts who speaks the most number of words
 #' @inheritParams count_the_speakers
-#' @importFrom dplyr arrange select
+#' @importFrom dplyr arrange select filter
 #' @return a frequency table
-count_num_words <- function(all_scripts) {
+count_num_words <- function(all_scripts,the_season="all",the_episode="all") {
+  #filter by season
+  #filter by season
+  if (the_season!="all") {
+    all_scripts <- dplyr::filter(all_scripts,season==the_season)
+  }
+
+  #filter by episode
+  if (the_episode!="all") {
+    all_scripts <- dplyr::filter(all_scripts,episode==the_episode)
+  }
   x <- aggregate(num_words ~ speaker,data=all_scripts,sum)
   x <- arrange(x,desc(num_words))
   x <- select(x,speaker,freq=num_words)
