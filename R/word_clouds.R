@@ -1,20 +1,19 @@
 #' Make a word cloud from a dataframe
 #'
 #' Make a word cloud from a dataframe
-#' @param df a dataframe to make cloud from
+#' @param all_scripts a dataframe to make cloud from
+#' @param logical. Indicates weather to remove stopwords or not.
+#' @inheritParams filter_by_choose
 #' @import tm RColorBrewer wordcloud SnowballC
 #' @importFrom stringr str_replace_all
 #' @importFrom dplyr filter
 #' @return A word cloud chart
 #' @export
 make_cloud_by_name <- function(all_scripts,name,stopwords=FALSE,season="all",episode="all") {
-  df <- all_scripts
-  #filter by name
-  if (name!="all") df <- filter(df,speaker==name)
-  #filter by season
-  if (season!="all") df <- filter(df,season==season)
-  #filter by name
-  if (episode!="all") df <- filter(df,episode==episode)
+
+  #filter
+  df <- filter_by_choose(all_scripts,the_name = name,the_season = season,
+                   the_episode = episode)
 
   df <- df$content
 
