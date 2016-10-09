@@ -22,6 +22,13 @@ count_num_words <- function(all_scripts) {
   x <- select(x,speaker,freq=num_words)
   x
 }
+#' Plot a frequency plot
+#'
+#' Plot a frequency plot for the speakers
+#' @param freq a frequency table
+#' @param num a number indicates the number of bars in the plot
+#' @import ggplot2
+#' @return a bar plot
 plot_the_speakers <- function(freq,num) {
   freq <- head(freq,num)
   highest <- head(freq,1)$freq
