@@ -3,7 +3,7 @@
 #' A function to convert html to text
 #' Author: Tony Breyal
 #' @import XML
-#' @import Rcurl
+#' @import RCurl
 
 
 htmlToText <- function(input, ...) {
