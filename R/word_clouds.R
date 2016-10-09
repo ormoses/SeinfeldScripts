@@ -1,5 +1,3 @@
-#rem_pattern <- content_transformer(function(x, pattern) gsub(pattern, "", x))
-
 #' Make a word cloud from a dataframe
 #'
 #' Make a word cloud from a dataframe
@@ -8,6 +6,7 @@
 #' @importFrom stringr str_replace_all
 #' @importFrom dplyr filter
 #' @return A word cloud chart
+#' @export
 make_cloud_by_name <- function(all_scripts,name,stopwords=FALSE,season="all",episode="all") {
   df <- all_scripts
   #filter by name

@@ -7,6 +7,7 @@
 #' @importFrom plyr count
 #' @importFrom dplyr arrange filter
 #' @return a frequency table
+#' @export
 count_the_speakers <- function(all_scripts,the_season="all",the_episode="all") {
   #filter by season
   if (the_season!="all") {
@@ -29,6 +30,7 @@ count_the_speakers <- function(all_scripts,the_season="all",the_episode="all") {
 #' @inheritParams count_the_speakers
 #' @importFrom dplyr arrange select filter
 #' @return a frequency table
+#' @export
 count_num_words <- function(all_scripts,the_season="all",the_episode="all") {
   #filter by season
   #filter by season
@@ -52,6 +54,7 @@ count_num_words <- function(all_scripts,the_season="all",the_episode="all") {
 #' @param num a number indicates the number of bars in the plot
 #' @import ggplot2
 #' @return a bar plot
+#' @export
 plot_the_speakers <- function(freq,num) {
   freq <- head(freq,num)
   highest <- head(freq,1)$freq
