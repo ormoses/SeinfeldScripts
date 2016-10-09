@@ -28,7 +28,7 @@ clean_the_episode <- function(ep) {
 
   #Extract the season #, episode #, episode name
 
-  #Extract the episode total number and episode name
+  #Extract the episode total number
   ep_loc <- str_locate(ep,"Episode [0-9&]+")
   episode <- substr(ep,ep_loc[1],ep_loc[2])
   tot_episode <- str_extract(episode,"[0-9&]+")
@@ -38,9 +38,6 @@ clean_the_episode <- function(ep) {
   season_ep <- str_extract_all(season_ep,"[0-9&]+")[[1]]
   season <- season_ep[1]
   episode <- season_ep[2]
-  print(tot_episode)
-  print(season)
-  print(episode)
 
   #Take out everything before "========================"
   start <- str_locate_all(ep,"===")
@@ -54,7 +51,7 @@ clean_the_episode <- function(ep) {
   ep <- gsub("\\s+"," ",ep)
   #Delete extra spaces in the beginning and end
   ep <- str_trim(ep)
-  ep
+  list(season=season,episode=episode,tot_episode=tot_episode,script=ep)
 }
 
 
