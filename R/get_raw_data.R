@@ -11,6 +11,12 @@ get_raw_episode <- function(ep_num) {
   txt
 }
 
+#' Read all Seinfeld scripts to a list
+#'
+#' A function to read all the scripts from the web and save as files as well as generating a list
+#' with the raw data
+#' @param nums a numeric vector of the episodes numbers to read from the web.
+#' @return a list. A list where each item is a raw script.
 get_raw_data <- function(nums) {
   raw_data_list <- list()
   #for (i in c(1:81,84:99,102:176)) {
@@ -28,6 +34,13 @@ get_raw_data <- function(nums) {
   raw_data_list
 }
 
+#' Merge all scripts saved in files to a list.
+#'
+#' This function merges all Rda files with the script to a list in case the connection to the web halts in the
+#' middle of teh download
+#' @param thepath The path where the Rda files are in
+#' @inheritParams get_raw_data
+#' @return a list. A list where each item is a raw script.
 get_list_from_rda_files <- function(thepath,nums) {
   raw_data_list <- list()
   for (i in nums) {
