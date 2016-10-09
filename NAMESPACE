@@ -2,5 +2,4 @@
 
 import(RCurl)
 import(XML)
-importFrom(stringr,str_locate_all)
-importFrom(stringr,str_replace_all)
+import(stringr)
