@@ -1,8 +1,14 @@
+#' Clean the raw data of a script
+#'
+#' The function takes a raw data of a script (html) and cleans it that only the script is left.
+#' @param ep The raw data of a single script
+#' @importFrom  stringr str_locate_all str_replace_all
+#' @return a string that is a cleaned script
 clean_episode <- function(ep) {
 
   # Get rid of sum html stuff
   ep <- gsub("\\t","",ep)
-  ep <- gsub("\\n","",ep)
+  #ep <- gsub("\\n","",ep)
   ep <- gsub("\\\\","",ep)
   ep <- gsub("\\*","",ep)
   ep <- gsub("\\[Opening Monologue\\]","MONOLOUGUE:",ep)
