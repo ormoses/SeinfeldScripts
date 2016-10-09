@@ -3,7 +3,6 @@
 #' A function to arrange a cleaned script (the list that gets back from \code{\link{clean_the_episode}}).
 #' Every row in the dataframe is a different person speaking.
 #' @param ep a list. The list returned from \code{\link{clean_the_episode}} of a single episode.
-#' @importFrom dplyr mutate
 #' @importFrom stringr str_locate_all str_trim
 #' @return a dataframe containing arranged episode script
 arrange_episode <- function(ep) {
@@ -19,4 +18,5 @@ arrange_episode <- function(ep) {
   n <- length(content)
   res <- data.frame(season = rep(ep$season,n), episode = rep(ep$episode,n), speaker=spks,content=content,
              num_words = num_words, total_episode = rep(ep$tot_episode,n),stringsAsFactors = FALSE)
+  res
 }
