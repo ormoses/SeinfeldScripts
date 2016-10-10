@@ -38,3 +38,13 @@ remove_pattern <- function(string,pattern,type,occur) {
 remove_before <- function(string,pattern,occur="first") {
   remove_pattern(string,pattern,type="before",occur)
 }
+
+#' Remove everything after a pattern
+#'
+#' Remove everything after a pattern in a string
+#' @inheritParams remove_pattern
+#' @return
+#' @export a string after removing everything after the pattern
+remove_after <- function(string,pattern,occur="last") {
+  remove_pattern(string,pattern,type="after",occur)
+}
