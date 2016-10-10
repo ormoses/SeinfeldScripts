@@ -2,6 +2,14 @@
 #'
 #' A function to convert html to text
 #' Author: Tony Breyal
+#' Date: 2011-11-18
+#' Modified: 2011-11-18
+#' Description: Extracts all text from a webpage (aims to extract only the text you would see in a web browser)
+#' Packages Used: RCurl, XML
+#' Blog Reference: Not published
+#' Copyright (c) 2011, under the Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) License
+#' For more information see: https://creativecommons.org/licenses/by-nc/3.0/
+#' All rights reserved.
 #' @import XML
 #' @import RCurl
 
