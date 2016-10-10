@@ -1,3 +1,5 @@
+library(SeinfeldScripts)
+
 shinyServer(function(input, output) {
   output$freq_plot <- renderPlot({
     if (input$series=="Seinfeld") {
