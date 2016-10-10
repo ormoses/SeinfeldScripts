@@ -10,7 +10,7 @@ make_cloud_by_name(all_scripts, name, stopwords = FALSE, season = "all",
 \arguments{
 \item{all_scripts}{a dataframe to make cloud from}
 
-\item{name}{a character vector. ("all") will mean no filter)}
+\item{name}{a character vector. ("all") will mean no filter}
 
 \item{season}{a numeric vector. ("all") will mean no filter}
 

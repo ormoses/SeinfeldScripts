@@ -10,7 +10,7 @@ arrange_episode(ep)
 \item{ep}{a list. The list returned from \code{\link{clean_the_episode}} of a single episode.}
 }
 \value{
-a dataframe containing arranged episode script
+a dataframe containing arranged episode scripts
 }
 \description{
 A function to arrange a cleaned script (the list that gets back from \code{\link{clean_the_episode}}).
