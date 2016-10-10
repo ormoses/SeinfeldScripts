@@ -4,12 +4,14 @@
 \alias{plot_the_speakers}
 \title{Plot a frequency plot}
 \usage{
-plot_the_speakers(freq, num)
+plot_the_speakers(freq, num, x_name)
 }
 \arguments{
 \item{freq}{a frequency table}
 
 \item{num}{a number indicates the number of bars in the plot}
+
+\item{x_name}{the name of the x axis}
 }
 \value{
 a bar plot

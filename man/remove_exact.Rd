@@ -4,7 +4,7 @@
 \alias{remove_exact}
 \title{Remove everything that matches a pattern}
 \usage{
-remove_exact(string, pattern)
+remove_exact(string, pattern, sep = " ")
 }
 \arguments{
 \item{string}{a string to remove pattern from}
