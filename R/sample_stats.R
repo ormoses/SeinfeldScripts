@@ -64,6 +64,7 @@ count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
 #' @import ggplot2
 #' @return a bar plot
 #' @export
+
 plot_the_speakers <- function(freq,num) {
   freq <- head(freq,num)
   highest <- head(freq,1)$freq
