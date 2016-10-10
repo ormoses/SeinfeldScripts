@@ -28,3 +28,13 @@ remove_pattern <- function(string,pattern,type,occur) {
   }
   substr(string,first,last)
 }
+
+#' Remove everything before a pattern
+#'
+#' Remove everything before a pattern in a string
+#' @inheritParams remove_pattern
+#' @return
+#' @export a string after removing everything before the pattern
+remove_before <- function(string,pattern,occur="first") {
+  remove_pattern(string,pattern,type="before",occur)
+}
