@@ -31,7 +31,8 @@ make_cloud_by_name <- function(all_scripts,name,stopwords=FALSE,season="all",epi
   a <- tm_map(a,removePunctuation)
   a <- tm_map(a,content_transformer(tolower))
   #a <- tm_map(a,removeWords,stopwords)
-  a <- tm_map(a,stemDocument)
+
+  #a <- tm_map(a,stemDocument)
 
   wordcloud(a, scale=c(4,0.5), max.words=150, random.order=FALSE, rot.per=0.35, use.r.layout=FALSE,colors=brewer.pal(8, "Set2"))
 }
