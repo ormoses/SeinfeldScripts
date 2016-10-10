@@ -33,8 +33,8 @@ remove_pattern <- function(string,pattern,type,occur) {
 #'
 #' Remove everything before a pattern in a string
 #' @inheritParams remove_pattern
-#' @return
-#' @export a string after removing everything before the pattern
+#' @return a string after removing everything before the pattern
+#' @export
 remove_before <- function(string,pattern,occur="first") {
   remove_pattern(string,pattern,type="before",occur)
 }
@@ -43,8 +43,32 @@ remove_before <- function(string,pattern,occur="first") {
 #'
 #' Remove everything after a pattern in a string
 #' @inheritParams remove_pattern
-#' @return
-#' @export a string after removing everything after the pattern
+#' @return a string after removing everything after the pattern
+#' @export
 remove_after <- function(string,pattern,occur="last") {
   remove_pattern(string,pattern,type="after",occur)
 }
+
+#' Remove everything that matches a pattern
+#'
+#' Remove everything that matches a pattern in a string
+#' @inheritParams remove_pattern
+#' @return a string after removing everything that matches the pattern
+#' @export
+remove_exact <- function(string,pattern) {
+  gsub(pattern,"",string)
+}
+
+#' Remove everything between two patterns
+#'
+#' Remove everything between two patterns in a string
+#' @param pattern a character matrix with 2 columns. The first element is the left pattern and the
+#' second is the right (if the pattern needs escaping with backslash then add it.
+#' @inheritParams remove_pattern
+#' @importFrom stringr str_replace_all
+#' @return a string after removing everything between the two patterns
+#' @export
+remove_between <- function(string,pattern) {
+  str_replace_all(string,paste0(pattern[1],".*?",pattern[2],"")
+}
+
