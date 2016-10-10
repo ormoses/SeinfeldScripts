@@ -88,7 +88,6 @@ count_list_of_words <- function(all_scripts,word_vec,name="all",season="all",epi
 #' @import ggplot2
 #' @return a bar plot
 #' @export
-
 plot_the_speakers <- function(freq,num,x_name) {
   freq <- head(freq,num)
   highest <- head(freq,1)$freq
