@@ -108,3 +108,13 @@ split_to_words <- function(string) {
   unlist(str_split(string," "))
 }
 
+#' Stem words using SnowballC
+#'
+#' Split a string into character vector of words
+#' @param string a character vector of words
+#' @importFrom SnowballC wordStem
+#' @return a character vector where each word is stemmed
+#' @export
+stem_words <- function(string) {
+  wordStem(string)
+}
