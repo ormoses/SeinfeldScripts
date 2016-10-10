@@ -1,4 +1,6 @@
 library(SeinfeldScripts)
+data(seinfeld)
+data(friends)
 
 shinyServer(function(input, output) {
   output$freq_plot <- renderPlot({
