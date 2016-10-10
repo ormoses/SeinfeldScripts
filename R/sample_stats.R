@@ -37,7 +37,7 @@ filter_by_choose <- function(all_scripts,the_name="all",the_season="all",
 #' @param season a number indicates the season. for all season can omit or "all"
 #' @param episode a number indicates the episode. for all season can omit or "all"
 #' @importFrom plyr count
-#' @importFrom dplyr arrange filter select
+#' @importFrom dplyr arrange filter select mutate
 #' @return a frequency table
 #' @export
 count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
@@ -48,6 +48,8 @@ count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
   if (type=="num_speaks") {
     counts <- count(all_scripts,'speaker')
   } else if (type=="num_words") {
+    num_words <- vapply(all_scripts$content,function(a) nrow(str_locate_all(a," ")[[1]])+1,numeric(1))
+    all_scripts <- mutate(all_scripts,num_words = num_words)
     counts <- aggregate(num_words ~ speaker,data=all_scripts,sum)
     counts <- select(counts,speaker,freq=num_words)
   }
