@@ -9,4 +9,8 @@ LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports: RCurl,
     stringr,
-    XML
+    XML,
+    tm,
+    RColorBrewer,
+    wordcloud,
+    SnowballC
