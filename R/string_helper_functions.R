@@ -69,6 +69,10 @@ remove_exact <- function(string,pattern) {
 #' @return a string after removing everything between the two patterns
 #' @export
 remove_between <- function(string,pattern) {
-  str_replace_all(string,paste0(pattern[1],".*?",pattern[2],"")
+  #get all the patterns
+  new_pat <- vapply(seq_len(nrow(pattern)),function(a) paste0(pattern[a,1],".*?",pattern[a,2]),character(1))
+  #add | (or) to make a large pattern
+  new_pat <- paste(new_pat,sep="",collapse="|")
+  str_replace_all(string,new_pat,"")
 }
 
