@@ -13,4 +13,6 @@ Imports: RCurl,
     tm,
     RColorBrewer,
     wordcloud,
-    SnowballC
+    SnowballC,
+    dplyr,
+    ggplot2
