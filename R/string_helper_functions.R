@@ -12,18 +12,16 @@ remove_pattern <- function(string,pattern,type,occur) {
   last <- str_length(string)
   #get the locations of all occurances
   locs <- str_locate_all(string,pattern)[[1]]
-  print(locs)
   #pick the first/last according to occur
   if (occur=="first") {
     locs <- locs[1,]
   } else if (occur=="last") {
     locs <- locs[nrow(locs),]
   }
-  print(locs)
   #accordiong to type - pick the range to remove
-  if (type=="before") {
+  if (type=="after") {
     last <- locs[1]-1
-  } else if (type=="after") {
+  } else if (type=="before") {
     first <- locs[2]+1
   }
   substr(string,first,last)
@@ -56,7 +54,7 @@ remove_after <- function(string,pattern,occur="last") {
 #' @return a string after removing everything that matches the pattern
 #' @export
 remove_exact <- function(string,pattern) {
-  gsub(pattern,"",string)
+  gsub(pattern," ",string)
 }
 
 #' Remove everything between two patterns
@@ -83,7 +81,7 @@ remove_between <- function(string,pattern) {
 #' @return a string after removing punctuation
 #' @export
 remove_punc <- function(string) {
-  remove_exact(string,"[.]|[,]|[?]|[!]")
+  remove_exact(string,"[.]|[,]|[?]|[!]|[:]|[;]|[-]|[_]")
 }
 
 #' Remove punctuation
@@ -101,11 +99,12 @@ remove_white_spaces <- function(string) {
 #'
 #' Split a string into character vector of words
 #' @param string a string to split into words
+#' @param seperator
 #' @importFrom stringr str_split
 #' @return a character vector where each word is an item
 #' @export
-split_to_words <- function(string) {
-  unlist(str_split(string," "))
+split_to_words <- function(string,sep=" ") {
+  unlist(str_split(string,sep))
 }
 
 #' Stem words using SnowballC
