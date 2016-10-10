@@ -53,8 +53,8 @@ remove_after <- function(string,pattern,occur="last") {
 #' @inheritParams remove_pattern
 #' @return a string after removing everything that matches the pattern
 #' @export
-remove_exact <- function(string,pattern) {
-  gsub(pattern," ",string)
+remove_exact <- function(string,pattern,sep=" ") {
+  gsub(pattern,sep,string)
 }
 
 #' Remove everything between two patterns
@@ -99,7 +99,7 @@ remove_white_spaces <- function(string) {
 #'
 #' Split a string into character vector of words
 #' @param string a string to split into words
-#' @param seperator
+#' @param sep a seperator
 #' @importFrom stringr str_split
 #' @return a character vector where each word is an item
 #' @export
