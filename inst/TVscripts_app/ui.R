@@ -12,7 +12,7 @@ shinyUI(fluidPage(
                     choices=as.list(c("all",1:10))),
         selectInput("episode",
                      label = h4("Select an episode"),
-                     choices=as.list(c("all",unique(seinfeld$episode)))),
+                     choices=as.list(c("all",1:24))),
         radioButtons("by_what",
                      label = h4("by what to plot?"),
                      choices=list("Number of time character speaks" = "num_speaks",
