@@ -81,7 +81,7 @@ remove_between <- function(string,pattern) {
 #' @return a string after removing punctuation
 #' @export
 remove_punc <- function(string) {
-  remove_exact(string,"[.]|[,]|[?]|[!]|[:]|[;]|[-]|[_]")
+  remove_exact(string,"[.]|[,]|[?]|[!]|[:]|[;]|[-]|[_]|[']|[ֲ]",sep="")
 }
 
 #' Remove punctuation
