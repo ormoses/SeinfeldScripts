@@ -1,6 +1,6 @@
 library(SeinfeldScripts)
-data(seinfeld)
-data(friends)
+load("seinfeld.Rda")
+load("friends.Rda")
 
 shinyServer(function(input, output) {
   output$freq_plot <- renderPlot({
