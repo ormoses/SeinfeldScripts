@@ -54,6 +54,27 @@ count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
     freq <- arrange(counts,desc(freq))
     freq
 }
+#' Count frequency of a given list of words
+#'
+#' A function that counts the frequency of a given list of words in the show
+#' @param word_vec a character vector where each item is a word to count
+#' @inheritParams filter_by_choose
+#' @return a frequency table
+#' @importFrom plyr count
+#' @importFrom dplyr arrange %>%
+#' @export
+count_list_of_words <- function(all_scripts,word_vec,name="all",season="all",episode="all") {
+  #get only the content with filter
+  all_scripts <- filter_by_choose(all_scripts,name,season,episode)$content
+  #combine to one string
+  the_words <- paste(all_scripts,sep=" ",collapse=" ")
+  the_words <- the_words %>%
+                remove_punc %>% remove_white_spaces %>% split_to_words
+  the_words <- the_words[the_words %in% word_vec]
+  the_words <- count(the_words)
+  names(the_words)[1] <- "speaker"
+  arrange(the_words,desc(freq))
+}
 
 
 #' Plot a frequency plot
@@ -61,17 +82,18 @@ count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
 #' Plot a frequency plot for the speakers
 #' @param freq a frequency table
 #' @param num a number indicates the number of bars in the plot
+#' @param x_name the name of the x axis
 #' @import ggplot2
 #' @return a bar plot
 #' @export
 
-plot_the_speakers <- function(freq,num) {
+plot_the_speakers <- function(freq,num,x_name) {
   freq <- head(freq,num)
   highest <- head(freq,1)$freq
   #order the graph
   freq$speaker <- factor(freq$speaker,levels=freq$speaker[order(freq$freq,decreasing = TRUE)],ordered = TRUE)
   ggplot(data=freq,aes(x=speaker,y=freq))+geom_bar(stat="identity",color="black",fill="grey")+
-    labs(title = "Seinfeld Speaker\n", x = "\nSpeaker", y = "Frequency\n") +
+    labs(title = "Seinfeld Frequencies\n", x = paste0("\n",x_name), y = "Frequency\n") +
     geom_text(size=2.5,data=freq,aes(x=speaker,y=freq+highest/20,label=formatC(freq,format="d",big.mark=','))) +
     theme_classic() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
