@@ -76,3 +76,35 @@ remove_between <- function(string,pattern) {
   str_replace_all(string,new_pat,"")
 }
 
+#' Remove white spaces
+#'
+#' Remove white spaces from a string
+#' @param string a string to remove spaces from
+#' @return a string after removing punctuation
+#' @export
+remove_punc <- function(string) {
+  remove_exact(string,"[.]|[,]|[?]|[!]")
+}
+
+#' Remove punctuation
+#'
+#' Remove punctuation from a string
+#' @param string a string to remove punctuation from
+#' @importFrom stringr str_replace_all
+#' @return a string after removing white spaces
+#' @export
+remove_white_spaces <- function(string) {
+  str_trim(gsub(" +"," ",string))
+}
+
+#' Split a string into vector of words
+#'
+#' Split a string into character vector of words
+#' @param string a string to split into words
+#' @importFrom stringr str_split
+#' @return a character vector where each word is an item
+#' @export
+split_to_words <- function(string) {
+  unlist(str_split(string," "))
+}
+
