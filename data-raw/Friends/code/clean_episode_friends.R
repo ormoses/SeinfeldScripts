@@ -61,4 +61,7 @@ arrange_df_friends <- function(df) {
   dplyr::mutate(df,speaker=toupper(speaker))
   #remove extra spaces
   dplyr::mutate(df,speaker=stringr::str_trim(speaker))
+  #remove punctuation
+  df$content <- vapply(df$content,remove_punc,character(1))
+  df
 }
