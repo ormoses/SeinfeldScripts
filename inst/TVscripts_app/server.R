@@ -1,7 +1,9 @@
 library(SeinfeldScripts)
 library(dplyr)
+library(stringr)
 load("data/seinfeld.rda")
 load("data/friends.rda")
+load("data/food_words.rda")
 
 shinyServer(function(input, output,session) {
   #x <- reactiveValues()
@@ -49,7 +51,6 @@ shinyServer(function(input, output,session) {
   })
 
   output$freq_plot <- renderPlot({
-
     x <-  switch(input$series,
                  "Seinfeld"=seinfeld,
                  "Friends"=friends)
@@ -59,5 +60,18 @@ shinyServer(function(input, output,session) {
                                episode=input$episode)
     plot_the_speakers(freq,15,"Speaker")
   })
+
+  output$word_plot <- renderPlot({
+
+    x <-  switch(input$series,
+                 "Seinfeld"=seinfeld,
+                 "Friends"=friends)
+
+    freq <- count_list_of_words(x, word_vec=food_words,
+                               season=input$season,
+                               episode=input$episode)
+    plot_the_speakers(freq,15,"Food")
+  })
+
   }
 )
