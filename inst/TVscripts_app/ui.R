@@ -13,17 +13,23 @@ shinyUI(fluidPage(
         selectInput("episode",
                      label = h4("Select an episode"),
                      choices=as.list(c("all",1:24))),
-        radioButtons("by_what",
-                     label = h4("by what to plot?"),
-                     choices=list("Number of time character speaks" = "num_speaks",
+        conditionalPanel(condition = "input.tabs1 == 'speak'",
+          radioButtons("by_what",
+                       label = h4("by what to plot?"),
+                       choices=list("Number of time character speaks" = "num_speaks",
                                   "Number of words a character speaks" = "num_words"))
-      ),
+        ),
+        conditionalPanel(condition = "input.tabs1 == 'words'",
+                         selectInput("name",
+                                      label = h4("Select Charcter Name"),
+                                      choices="all")
+      )),
 
 
       mainPanel(
-        tabsetPanel(type="tabs",
-          tabPanel("Character Speaking",plotOutput("freq_plot")),
-          tabPanel("Food Word Frequency",plotOutput("word_plot"))
+        tabsetPanel(type="tabs",id="tabs1",
+          tabPanel("Character Speaking",plotOutput("freq_plot"), value = "speak"),
+          tabPanel("Food Word Frequency",plotOutput("word_plot"), value = "words")
         )
       )
     )
