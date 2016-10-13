@@ -2,6 +2,6 @@ name: TVscripts_app
 account: ormoses
 server: shinyapps.io
 appId: 130873
-bundleId: 582639
+bundleId: 585493
 url: https://ormoses.shinyapps.io/TVscripts_app/
-when: 1476127275.06403
+when: 1476362574.78064
