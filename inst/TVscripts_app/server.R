@@ -1,6 +1,10 @@
 library(SeinfeldScripts)
 library(dplyr)
 library(stringr)
+library(tm)
+library(RColorBrewer)
+library(wordcloud)
+library(SnowballC)
 load("data/seinfeld.rda")
 load("data/friends.rda")
 load("data/food_words.rda")
@@ -56,7 +60,6 @@ shinyServer(function(input, output,session) {
   })
 
   output$freq_plot <- renderPlot({
-
     scripts <- x()
     freq <- count_the_speakers(scripts, type=input$by_what,
                                season=input$season,
@@ -65,13 +68,17 @@ shinyServer(function(input, output,session) {
   })
 
   output$word_plot <- renderPlot({
-
     scripts <- x()
     freq <- count_list_of_words(scripts, word_vec=food_words,
                                 name=input$name,
                                 season=input$season,
                                 episode=input$episode)
     plot_the_speakers(freq,input$bins,"Food")
+  })
+
+  output$cloud_plot <- renderPlot({
+    scripts <- x()
+    make_cloud_by_name(scripts,input$name,season=input$season,episode=input$episode)
   })
 
   }

@@ -36,7 +36,7 @@ shinyUI(fluidPage(
         tabsetPanel(type="tabs",id="tabs1",
           tabPanel("Character Speaking",plotOutput("freq_plot"), value = "speak"),
           tabPanel("Food Word Frequency",plotOutput("word_plot"), value = "words"),
-          tabPanel("Word Cloud",plotOutput("word_cloud"),value = "cloud")
+          tabPanel("Word Cloud",plotOutput("cloud_plot"),value = "cloud")
         )
       )
     )
