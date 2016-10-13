@@ -1,4 +1,4 @@
-library(SeinfeldScripts)
+library(TVscriptsR)
 library(dplyr)
 library(stringr)
 library(tm)
