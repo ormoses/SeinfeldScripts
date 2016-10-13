@@ -9,7 +9,7 @@
 #' @importFrom dplyr filter
 #' @return A word cloud chart
 #' @export
-make_cloud_by_name <- function(all_scripts,name,stopwords=FALSE,season="all",episode="all") {
+make_cloud_by_name <- function(all_scripts,name,season="all",episode="all",stopwords=FALSE,stemming=FALSE) {
 
   #filter
   df <- filter_by_choose(all_scripts,the_name = name,the_season = season,
@@ -30,9 +30,9 @@ make_cloud_by_name <- function(all_scripts,name,stopwords=FALSE,season="all",epi
   a <- tm_map(a,removeNumbers)
   a <- tm_map(a,removePunctuation)
   a <- tm_map(a,content_transformer(tolower))
-  #a <- tm_map(a,removeWords,stopwords)
+  if (stemming==TRUE) {
+    a <- tm_map(a,stemDocument)
+  }
 
-  #a <- tm_map(a,stemDocument)
-
-  wordcloud(a, scale=c(4,0.5), max.words=150, random.order=FALSE, rot.per=0.35, use.r.layout=FALSE,colors=brewer.pal(8, "Set2"))
+  wordcloud(a, scale=c(4,0.5), max.words=150, random.order=FALSE, rot.per=0.35, use.r.layout=FALSE,colors=brewer.pal(8, "Dark2"))
 }
