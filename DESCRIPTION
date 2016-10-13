@@ -1,4 +1,4 @@
-Package: SeinfeldScripts
+Package: TVseriesR
 Type: Package
 Title: Statistics and charts for TV series using their scripts (currently Seinfeld and Friends)
 Version: 0.1.0
