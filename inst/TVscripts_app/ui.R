@@ -21,13 +21,21 @@ shinyUI(fluidPage(
         ),
         conditionalPanel(condition = ("input.tabs1 == 'words' | input.tabs1 == 'cloud'"),
                          selectInput("name",
-                                      label = h4("Select Charcter Name"),
+                                      label = h4("Select Character Name"),
                                       choices="all")
         ),
         conditionalPanel(condition = ("input.tabs1 == 'speak' | input.tabs1 == 'words'"),
                          sliderInput("bins",
                                      label = h4("Select number of bins"),
                                      min=1,max=25,value=10)
+        ),
+        conditionalPanel(condition = ("input.tabs1 == 'cloud'"),
+                         checkboxInput("stopwords",
+                                     label = h5("Remove stop words"),
+                                     value=FALSE),
+                         checkboxInput("stem",
+                                       label = h5("Use stemming algorithm"),
+                                       value=FALSE)
         )
       ),
 

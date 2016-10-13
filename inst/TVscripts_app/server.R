@@ -78,7 +78,8 @@ shinyServer(function(input, output,session) {
 
   output$cloud_plot <- renderPlot({
     scripts <- x()
-    make_cloud_by_name(scripts,input$name,season=input$season,episode=input$episode)
+    make_cloud_by_name(scripts, input$name, season = input$season, episode = input$episode,
+                       stopwords = input$stopwords, stemming = input$stem)
   })
 
   }
