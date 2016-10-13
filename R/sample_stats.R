@@ -90,6 +90,7 @@ count_list_of_words <- function(all_scripts,word_vec,name="all",season="all",epi
 #' @export
 plot_the_speakers <- function(freq,num,x_name) {
   freq <- head(freq,num)
+  if (nrow(freq)==0) stop("Can't find any matches")
   highest <- head(freq,1)$freq
   #order the graph
   freq$speaker <- factor(freq$speaker,levels=freq$speaker[order(freq$freq,decreasing = TRUE)],ordered = TRUE)
