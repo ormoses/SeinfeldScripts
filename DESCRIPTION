@@ -1,10 +1,10 @@
 Package: SeinfeldScripts
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Statistics and charts for TV series using their scripts (currently Seinfeld and Friends)
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Or", "Moses", email = "or.moses@gmail.com", role = c("aut", "cre"))
+Description: A package that computes various statistics and charts from data of TV series scripts. The code for getting and cleaning the raw data can be found on https://github.com/ormoses/SeinfeldScripts/tree/master/data-raw.
+License: GPL-3
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports: RCurl,
@@ -15,4 +15,5 @@ Imports: RCurl,
     wordcloud,
     SnowballC,
     dplyr,
-    ggplot2
+    ggplot2,
+    plyr

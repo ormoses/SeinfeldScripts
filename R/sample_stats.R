@@ -3,9 +3,9 @@
 #' A helper function to choose to filter by name/season/episode
 #'
 #' @param all_scripts dataframe with all the scripts arranged
-#' @param name a character vector. ("all") will mean no filter
-#' @param season a numeric vector. ("all") will mean no filter
-#' @param episode a numeric vector. ("all") will mean no filter
+#' @param the_name a character vector. ("all") will mean no filter
+#' @param the_season a numeric vector. ("all") will mean no filter
+#' @param the_episode a numeric vector. ("all") will mean no filter
 #' @importFrom dplyr filter
 #' @return dataframe filtered
 filter_by_choose <- function(all_scripts,the_name="all",the_season="all",
@@ -57,8 +57,10 @@ count_episodes_appear <- function(all_scripts,season="all") {
 #' speaks ("num_speaks") or number of words ("num_words")
 #' @param season a number indicates the season. for all season can omit or "all"
 #' @param episode a number indicates the episode. for all season can omit or "all"
+#' @param scaled logical. Weather to scale the frequency by number of episodes the character involved.
 #' @importFrom plyr count
 #' @importFrom dplyr arrange filter select mutate
+#' @importFrom stats aggregate
 #' @return a frequency table
 #' @export
 count_the_speakers <- function(all_scripts, type, season = "all",episode = "all", scaled = FALSE) {
@@ -117,6 +119,7 @@ count_list_of_words <- function(all_scripts,word_vec,name="all",season="all",epi
 #' @param num a number indicates the number of bars in the plot
 #' @param x_name the name of the x axis
 #' @import ggplot2
+#' @importFrom utils head
 #' @return a bar plot
 #' @export
 plot_the_speakers <- function(freq,num,x_name) {

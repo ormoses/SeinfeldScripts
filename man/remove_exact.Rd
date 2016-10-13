@@ -10,6 +10,8 @@ remove_exact(string, pattern, sep = " ")
 \item{string}{a string to remove pattern from}
 
 \item{pattern}{a regular expression that indicates the pattern to remove}
+
+\item{sep}{a seperator instead of the removed pattern}
 }
 \value{
 a string after removing everything that matches the pattern

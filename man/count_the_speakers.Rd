@@ -16,6 +16,8 @@ speaks ("num_speaks") or number of words ("num_words")}
 \item{season}{a number indicates the season. for all season can omit or "all"}
 
 \item{episode}{a number indicates the episode. for all season can omit or "all"}
+
+\item{scaled}{logical. Weather to scale the frequency by number of episodes the character involved.}
 }
 \value{
 a frequency table

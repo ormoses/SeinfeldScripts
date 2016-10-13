@@ -11,12 +11,6 @@ count_list_of_words(all_scripts, word_vec, name = "all", season = "all",
 \item{all_scripts}{dataframe with all the scripts arranged}
 
 \item{word_vec}{a character vector where each item is a word to count}
-
-\item{name}{a character vector. ("all") will mean no filter}
-
-\item{season}{a numeric vector. ("all") will mean no filter}
-
-\item{episode}{a numeric vector. ("all") will mean no filter}
 }
 \value{
 a frequency table

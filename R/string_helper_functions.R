@@ -50,6 +50,7 @@ remove_after <- function(string,pattern,occur="last") {
 #' Remove everything that matches a pattern
 #'
 #' Remove everything that matches a pattern in a string
+#' @param sep a seperator instead of the removed pattern
 #' @inheritParams remove_pattern
 #' @return a string after removing everything that matches the pattern
 #' @export

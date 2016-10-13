@@ -13,6 +13,7 @@
 #' All rights reserved. \cr
 #' @import XML
 #' @import RCurl
+#' @importFrom utils download.file
 htmlToText <- function(input, ...) {
   ###--- LOCAL FUNCTIONS ---###
   # Determine how to grab html for a single input element

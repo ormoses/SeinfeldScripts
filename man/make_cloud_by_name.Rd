@@ -10,13 +10,9 @@ make_cloud_by_name(all_scripts, name, season = "all", episode = "all",
 \arguments{
 \item{all_scripts}{a dataframe to make cloud from}
 
-\item{name}{a character vector. ("all") will mean no filter}
+\item{stopwords}{logical. Indicates weather to remove stopwords or not.}
 
-\item{season}{a numeric vector. ("all") will mean no filter}
-
-\item{episode}{a numeric vector. ("all") will mean no filter}
-
-\item{logical.}{Indicates weather to remove stopwords or not.}
+\item{stemming}{logical. Indicates weather to use stemming algorithm.}
 }
 \value{
 A word cloud chart

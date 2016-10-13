@@ -10,11 +10,11 @@ filter_by_choose(all_scripts, the_name = "all", the_season = "all",
 \arguments{
 \item{all_scripts}{dataframe with all the scripts arranged}
 
-\item{name}{a character vector. ("all") will mean no filter}
+\item{the_name}{a character vector. ("all") will mean no filter}
 
-\item{season}{a numeric vector. ("all") will mean no filter}
+\item{the_season}{a numeric vector. ("all") will mean no filter}
 
-\item{episode}{a numeric vector. ("all") will mean no filter}
+\item{the_episode}{a numeric vector. ("all") will mean no filter}
 }
 \value{
 dataframe filtered
