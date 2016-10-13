@@ -9,7 +9,7 @@ shinyUI(fluidPage(
                     selected = "Seinfeld"),
         selectInput("season",
                      label = h4("Select a season"),
-                    choices=as.list(c("all",1:10))),
+                    choices=as.list(c("all",1:9))),
         selectInput("episode",
                      label = h4("Select an episode"),
                      choices=as.list(c("all",1:24))),
