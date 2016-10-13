@@ -5,6 +5,7 @@ library(tm)
 library(RColorBrewer)
 library(wordcloud)
 library(SnowballC)
+
 load("data/seinfeld.rda")
 load("data/friends.rda")
 load("data/food_words.rda")

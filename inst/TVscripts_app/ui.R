@@ -16,26 +16,26 @@ shinyUI(fluidPage(
         conditionalPanel(condition = "input.tabs1 == 'speak'",
           radioButtons("by_what",
                        label = h4("by what to plot?"),
-                       choices=list("Number of time character speaks" = "num_speaks",
+                       choices = list("Number of time character speaks" = "num_speaks",
                                   "Number of words a character speaks" = "num_words"))
         ),
         conditionalPanel(condition = ("input.tabs1 == 'words' | input.tabs1 == 'cloud'"),
                          selectInput("name",
                                       label = h4("Select Character Name"),
-                                      choices="all")
+                                      choices = "all")
         ),
         conditionalPanel(condition = ("input.tabs1 == 'speak' | input.tabs1 == 'words'"),
                          sliderInput("bins",
                                      label = h4("Select number of bins"),
-                                     min=1,max=25,value=10)
+                                     min = 1,max = 25,value = 10)
         ),
         conditionalPanel(condition = ("input.tabs1 == 'cloud'"),
                          checkboxInput("stopwords",
                                      label = h5("Remove stop words"),
-                                     value=FALSE),
+                                     value = FALSE),
                          checkboxInput("stem",
                                        label = h5("Use stemming algorithm"),
-                                       value=FALSE)
+                                       value = FALSE)
         )
       ),
 
