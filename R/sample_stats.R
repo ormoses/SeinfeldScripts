@@ -28,6 +28,26 @@ filter_by_choose <- function(all_scripts,the_name="all",the_season="all",
 }
 
 
+#' Counts number of episode each character appears
+#'
+#' A function that counts how many episodes a character appears
+#' @param all_scripts a dataframe with all the scripts data arranged
+#' @param season a number indicates the season. for all season can omit or "all"
+#' @importFrom plyr count
+#' @importFrom dplyr arrange filter select mutate
+#' @return a frequency table
+#' @export
+count_episodes_appear <- function(all_scripts,season="all") {
+  #filter
+  all_scripts <- filter_by_choose(all_scripts,the_season=season)
+  #Make a list of all characters
+  characters <- unique(as.character(all_scripts$speaker))
+  #Count for each character the number of episodes
+  df <- data.frame(speaker = as.character(characters), num_episodes = vapply(characters,
+         function(ch_name) length(unique(all_scripts[all_scripts$speaker==ch_name & all_scripts$season==season,]$episode)),
+         numeric(1)),stringsAsFactors = FALSE)
+}
+
 #' Count who speakes most by number of times
 #'
 #' A function that counts who speaks the most number of times
@@ -40,7 +60,7 @@ filter_by_choose <- function(all_scripts,the_name="all",the_season="all",
 #' @importFrom dplyr arrange filter select mutate
 #' @return a frequency table
 #' @export
-count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
+count_the_speakers <- function(all_scripts, type, season = "all",episode = "all", scaled = FALSE) {
   #filter
   all_scripts <- filter_by_choose(all_scripts,the_season=season,
                                   the_episode=episode)
@@ -52,6 +72,12 @@ count_the_speakers <- function(all_scripts,type,season="all",episode="all") {
     all_scripts <- mutate(all_scripts,num_words = num_words)
     counts <- aggregate(num_words ~ speaker,data=all_scripts,sum)
     counts <- select(counts,speaker,freq=num_words)
+    if (scaled == TRUE) {
+      epis_appear <- count_episodes_appear(all_scripts, season)
+      new_count <- merge(counts, epis_appear)
+      new_count <- mutate(new_count, freq_by_episode = freq / num_episodes)
+      counts <- select(new_count, speaker, freq = freq_by_episode)
+    }
   }
     freq <- arrange(counts,desc(freq))
     freq
