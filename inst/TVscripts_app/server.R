@@ -61,7 +61,7 @@ shinyServer(function(input, output,session) {
     freq <- count_the_speakers(scripts, type=input$by_what,
                                season=input$season,
                                episode=input$episode)
-    plot_the_speakers(freq,15,"Speaker")
+    plot_the_speakers(freq,input$bins,"Speaker")
   })
 
   output$word_plot <- renderPlot({
@@ -71,7 +71,7 @@ shinyServer(function(input, output,session) {
                                 name=input$name,
                                 season=input$season,
                                 episode=input$episode)
-    plot_the_speakers(freq,15,"Food")
+    plot_the_speakers(freq,input$bins,"Food")
   })
 
   }

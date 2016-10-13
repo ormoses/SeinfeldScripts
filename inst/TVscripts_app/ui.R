@@ -27,7 +27,7 @@ shinyUI(fluidPage(
         conditionalPanel(condition = ("input.tabs1 == 'speak' | input.tabs1 == 'words'"),
                          sliderInput("bins",
                                      label = h4("Select number of bins"),
-                                     min=0,max=25,value=10)
+                                     min=1,max=25,value=10)
         )
       ),
 
