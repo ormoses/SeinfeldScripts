@@ -94,7 +94,7 @@ plot_the_speakers <- function(freq,num,x_name) {
   highest <- head(freq,1)$freq
   #order the graph
   freq$speaker <- factor(freq$speaker,levels=freq$speaker[order(freq$freq,decreasing = TRUE)],ordered = TRUE)
-  ggplot(data=freq,aes(x=speaker,y=freq))+geom_bar(stat="identity",color="black",fill="grey")+
+  ggplot(data=freq,aes(x=speaker,y=freq))+geom_bar(stat="identity",color="black",fill="skyblue3",alpha=0.7)+
     labs(title = "Word Frequencies\n", x = paste0("\n",x_name), y = "Frequency\n") +
     geom_text(size=2.5,data=freq,aes(x=speaker,y=freq+highest/20,label=formatC(freq,format="d",big.mark=','))) +
     theme_classic() +
