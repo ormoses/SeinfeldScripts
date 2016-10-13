@@ -19,6 +19,11 @@ shinyUI(fluidPage(
                        choices = list("Number of time character speaks" = "num_speaks",
                                   "Number of words a character speaks" = "num_words"))
         ),
+        conditionalPanel(condition = ("input.tabs1 == 'speak'"),
+                         checkboxInput("scale",
+                                       label = h5("Scale by episode appeared"),
+                                       value = FALSE)
+        ),
         conditionalPanel(condition = ("input.tabs1 == 'words' | input.tabs1 == 'cloud'"),
                          selectInput("name",
                                       label = h4("Select Character Name"),

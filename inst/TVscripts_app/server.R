@@ -62,9 +62,12 @@ shinyServer(function(input, output,session) {
 
   output$freq_plot <- renderPlot({
     scripts <- x()
-    freq <- count_the_speakers(scripts, type=input$by_what,
-                               season=input$season,
-                               episode=input$episode)
+    freq <- count_the_speakers(scripts,
+                               type = input$by_what,
+                               season = input$season,
+                               episode = input$episode,
+                               scaled = input$scale)
+
     plot_the_speakers(freq,input$bins,"Speaker")
   })
 
