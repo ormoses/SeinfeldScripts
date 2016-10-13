@@ -27,6 +27,11 @@ shinyServer(function(input, output,session) {
                       choices=season_list,
                       selected=season_selected
     )
+    #update the character names according to series
+    spks <- count_the_speakers(scripts,type="num_speaks",season="all",episode="all")
+    spks <- filter(spks,freq>1)
+    updateSelectInput(session,"name",
+                      choices=as.list(c("all",spks$speaker)))
   })
 
     #update the episodes on the season
@@ -62,10 +67,10 @@ shinyServer(function(input, output,session) {
   output$word_plot <- renderPlot({
 
     scripts <- x()
-
     freq <- count_list_of_words(scripts, word_vec=food_words,
-                               season=input$season,
-                               episode=input$episode)
+                                name=input$name,
+                                season=input$season,
+                                episode=input$episode)
     plot_the_speakers(freq,15,"Food")
   })
 

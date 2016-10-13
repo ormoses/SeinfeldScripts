@@ -2,7 +2,7 @@ shinyUI(fluidPage(
     titlePanel("TV Series scripts analysis"),
 
     sidebarLayout(
-      sidebarPanel(h3("Plot who speaks most"),
+      sidebarPanel(h3("Plot Frequency Table"),
         selectInput("series",
                     label = h3("Select a series"),
                     choices = list("Seinfeld" = "Seinfeld", "Friends" = "Friends"),
