@@ -4,8 +4,8 @@
 \alias{make_cloud_by_name}
 \title{Make a word cloud from a dataframe}
 \usage{
-make_cloud_by_name(all_scripts, name, stopwords = FALSE, season = "all",
-  episode = "all")
+make_cloud_by_name(all_scripts, name, season = "all", episode = "all",
+  stopwords = FALSE, stemming = FALSE)
 }
 \arguments{
 \item{all_scripts}{a dataframe to make cloud from}

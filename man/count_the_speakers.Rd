@@ -4,7 +4,8 @@
 \alias{count_the_speakers}
 \title{Count who speakes most by number of times}
 \usage{
-count_the_speakers(all_scripts, type, season = "all", episode = "all")
+count_the_speakers(all_scripts, type, season = "all", episode = "all",
+  scaled = FALSE)
 }
 \arguments{
 \item{all_scripts}{a dataframe with all the scripts data arranged}
