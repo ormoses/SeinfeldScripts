@@ -19,17 +19,24 @@ shinyUI(fluidPage(
                        choices=list("Number of time character speaks" = "num_speaks",
                                   "Number of words a character speaks" = "num_words"))
         ),
-        conditionalPanel(condition = "input.tabs1 == 'words'",
+        conditionalPanel(condition = ("input.tabs1 == 'words' | input.tabs1 == 'cloud'"),
                          selectInput("name",
                                       label = h4("Select Charcter Name"),
                                       choices="all")
-      )),
+        ),
+        conditionalPanel(condition = ("input.tabs1 == 'speak' | input.tabs1 == 'words'"),
+                         sliderInput("bins",
+                                     label = h4("Select number of bins"),
+                                     min=0,max=25,value=10)
+        )
+      ),
 
 
       mainPanel(
         tabsetPanel(type="tabs",id="tabs1",
           tabPanel("Character Speaking",plotOutput("freq_plot"), value = "speak"),
-          tabPanel("Food Word Frequency",plotOutput("word_plot"), value = "words")
+          tabPanel("Food Word Frequency",plotOutput("word_plot"), value = "words"),
+          tabPanel("Word Cloud",plotOutput("word_cloud"),value = "cloud")
         )
       )
     )
