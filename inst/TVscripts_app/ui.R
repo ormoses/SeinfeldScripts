@@ -23,7 +23,7 @@ shinyUI(fluidPage(
       mainPanel(
         tabsetPanel(type="tabs",
           tabPanel("Character Speaking",plotOutput("freq_plot")),
-          tabPanel("Word Frequency",plotOutput("word_plot"))
+          tabPanel("Food Word Frequency",plotOutput("word_plot"))
         )
       )
     )

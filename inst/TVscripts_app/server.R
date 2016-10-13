@@ -6,15 +6,17 @@ load("data/friends.rda")
 load("data/food_words.rda")
 
 shinyServer(function(input, output,session) {
-  #x <- reactiveValues()
+  x <- reactive({
+    ser <- switch(input$series,
+           "Seinfeld"=seinfeld,
+           "Friends"=friends)
+    ser
+  })
 
   observeEvent(input$series,{
     #update the number of season according to series
-   x <-  switch(input$series,
-            "Seinfeld"=seinfeld,
-            "Friends"=friends)
-
-    season_list <- as.list(c("all",sort(unique(x$season))))
+    scripts <- x()
+    season_list <- as.list(c("all",sort(unique(scripts$season))))
     max_season <- max(as.numeric(sapply(season_list[-1],max)))
     if (input$season == "all" | suppressWarnings(as.numeric(input$season)) <= max_season) {
       season_selected <- input$season
@@ -29,14 +31,12 @@ shinyServer(function(input, output,session) {
 
     #update the episodes on the season
   observeEvent(input$season,{
-    x <-  switch(input$series,
-                 "Seinfeld"=seinfeld,
-                 "Friends"=friends)
+    scripts <- x()
     if (input$season=="all") {
-      episode_list <- unique(x$episode)
+      episode_list <- unique(scripts$episode)
 
     } else {
-    episode_list <- x %>%
+    episode_list <- scripts %>%
                     filter(season==as.numeric(input$season)) %>%
                     select(episode) %>%
                     unique
@@ -51,11 +51,9 @@ shinyServer(function(input, output,session) {
   })
 
   output$freq_plot <- renderPlot({
-    x <-  switch(input$series,
-                 "Seinfeld"=seinfeld,
-                 "Friends"=friends)
 
-    freq <- count_the_speakers(x, type=input$by_what,
+    scripts <- x()
+    freq <- count_the_speakers(scripts, type=input$by_what,
                                season=input$season,
                                episode=input$episode)
     plot_the_speakers(freq,15,"Speaker")
@@ -63,11 +61,9 @@ shinyServer(function(input, output,session) {
 
   output$word_plot <- renderPlot({
 
-    x <-  switch(input$series,
-                 "Seinfeld"=seinfeld,
-                 "Friends"=friends)
+    scripts <- x()
 
-    freq <- count_list_of_words(x, word_vec=food_words,
+    freq <- count_list_of_words(scripts, word_vec=food_words,
                                season=input$season,
                                episode=input$episode)
     plot_the_speakers(freq,15,"Food")
