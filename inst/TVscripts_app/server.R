@@ -1,8 +1,10 @@
 library(SeinfeldScripts)
+library(dplyr)
 load("data/seinfeld.rda")
 load("data/friends.rda")
 
 shinyServer(function(input, output,session) {
+  #x <- reactiveValues()
 
   observeEvent(input$series,{
     #update the number of season according to series
@@ -24,11 +26,27 @@ shinyServer(function(input, output,session) {
   })
 
     #update the episodes on the season
-    #updateSelectInput(session,"episode",
-                      #label = h4("Select a season"),
-     #                 choices=as.list(sort(unique(x$season)))
-    #)
- # })
+  observeEvent(input$season,{
+    x <-  switch(input$series,
+                 "Seinfeld"=seinfeld,
+                 "Friends"=friends)
+    if (input$season=="all") {
+      episode_list <- unique(x$episode)
+
+    } else {
+    episode_list <- x %>%
+                    filter(season==as.numeric(input$season)) %>%
+                    select(episode) %>%
+                    unique
+    episode_list <- episode_list$episode
+
+    }
+
+    updateSelectInput(session,"episode",
+                      choices=as.list(c("all",episode_list)),
+                      selected = "all"
+    )
+  })
 
   output$freq_plot <- renderPlot({
 
