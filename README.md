@@ -1,5 +1,6 @@
-# SeinfeldScripts
-Statistics and charts from all of Seinfeld's scripts
+# TVscriptsR
+Statistics and charts from TV scripts.
+Currently has Seinfeld and Friends.
 
 ## Shiny app using the package:
 https://ormoses.shinyapps.io/TVscripts_app/
