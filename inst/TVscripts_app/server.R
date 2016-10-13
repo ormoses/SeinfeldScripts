@@ -4,25 +4,18 @@ load("data/friends.rda")
 
 shinyServer(function(input, output,session) {
 
-#  if (input$series=="Seinfeld") {
-#    x <- seinfeld
-#  } else if (input$series=="Friends") {
-#    x <- friends
-# }
-
-  observe({
+  observeEvent(input$series,{
     #update the number of season according to series
-    if (input$series=="Seinfeld") {
-          x <- seinfeld
-        } else if (input$series=="Friends") {
-          x <- friends
-       }
+   x <-  switch(input$series,
+            "Seinfeld"=seinfeld,
+            "Friends"=friends)
+
     season_list <- as.list(c("all",sort(unique(x$season))))
     max_season <- max(as.numeric(sapply(season_list[-1],max)))
-    if (input$season == "all" | as.numeric(input$season) <= max_season) {
+    if (input$season == "all" | suppressWarnings(as.numeric(input$season)) <= max_season) {
       season_selected <- input$season
     } else {
-      season_selected <- as.chracter(c("all"))
+      season_selected <- "all"
     }
     updateSelectInput(session,"season",
                       choices=season_list,
@@ -38,11 +31,10 @@ shinyServer(function(input, output,session) {
  # })
 
   output$freq_plot <- renderPlot({
-    if (input$series=="Seinfeld") {
-      x <- seinfeld
-    } else if (input$series=="Friends") {
-      x <- friends
-    }
+
+    x <-  switch(input$series,
+                 "Seinfeld"=seinfeld,
+                 "Friends"=friends)
 
     freq <- count_the_speakers(x, type=input$by_what,
                                season=input$season,
